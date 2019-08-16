@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
-#include "SoftwareSerial.h"
+#include "ESPSoftwareSerial.h"
 
-SoftwareSerial swSer1;
-SoftwareSerial swSer2;
+ESPSoftwareSerial swSer1;
+ESPSoftwareSerial swSer2;
 
 void setup() {
 	delay(2000);
@@ -25,7 +25,7 @@ void loop() {
 
 }
 
-void checkSwSerial(SoftwareSerial* ss) {
+void checkSwSerial(ESPSoftwareSerial* ss) {
 	byte ch;
 	while (!Serial.available());
 	ss->enableTx(true);

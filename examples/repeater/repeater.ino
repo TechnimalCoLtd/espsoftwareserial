@@ -1,10 +1,10 @@
-#include <SoftwareSerial.h>
+#include <ESPSoftwareSerial.h>
 
 // On ESP8266:
-// SoftwareSerial loopback for remote source (loopback.ino), or hardware loopback.
+// ESPSoftwareSerial loopback for remote source (loopback.ino), or hardware loopback.
 // Connect source D5 (rx) to local D8 (tx), source D6 (tx) to local D7 (rx).
 // Hint: The logger is run at 9600bps such that enableIntTx(true) can remain unchanged. Blocking
-// interrupts severely impacts the ability of the SoftwareSerial devices to operate concurrently
+// interrupts severely impacts the ability of the ESPSoftwareSerial devices to operate concurrently
 // and/or in duplex mode.
 // On ESP32:
 // For software or hardware loopback, connect source rx to local D8 (tx), source tx to local D7 (rx).
@@ -25,7 +25,7 @@ constexpr int IUTBITRATE = 19200;
 constexpr int IUTBITRATE = 19200;
 #endif
 
-constexpr SoftwareSerialConfig swSerialConfig = SWSERIAL_8N1;
+constexpr ESPSoftwareSerialConfig swSerialConfig = SWSERIAL_8N1;
 
 constexpr int BLOCKSIZE = 16; // use fractions of 256
 
@@ -40,13 +40,13 @@ constexpr int ReportInterval = IUTBITRATE / 8;
 #ifdef HWLOOPBACK
 #if defined(ESP8266)
 HardwareSerial& repeater(Serial);
-SoftwareSerial logger;
+ESPSoftwareSerial logger;
 #elif defined(ESP32)
 HardwareSerial& repeater(Serial2);
 HardwareSerial& logger(Serial);
 #endif
 #else
-SoftwareSerial repeater;
+ESPSoftwareSerial repeater;
 HardwareSerial& logger(Serial);
 #endif
 
